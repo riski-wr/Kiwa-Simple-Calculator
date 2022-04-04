@@ -90,6 +90,8 @@ const resultbox = document.getElementById("resultbox");
 
 let currentResultFontsize = "64px";
 
+let isDarkMode = false;
+
 const calculator = new KiwaSimpleCalculator()
 
 for (let item of btnNum) {
@@ -188,3 +190,35 @@ function setResultFontSizeByLength(){
 function checkFloat(n){
    return Number(n) === n && n % 1 !== 0
 }
+
+// Dark Mode
+
+const btnToggle = document.getElementById("btn-toggle");
+const imgDarkButton = document.getElementById("img-dark-button");
+const imgBtnUtil = document.querySelectorAll(".btn-util img");
+
+btnToggle.addEventListener("click", () => {
+    if (isDarkMode) {
+      console.log(imgBtnUtil)
+      document.querySelector(':root').style.setProperty('--primary-color', '#FFFFFF');
+      document.querySelector(':root').style.setProperty('--secondary-color', '#EFEFEF');
+      document.querySelector(':root').style.setProperty('--text-color', '#000000');
+      document.querySelector(':root').style.setProperty('--theme-color', '#FF7979');
+      imgDarkButton.setAttribute("src", "img/sun.svg")
+      for (let item of imgBtnUtil) {
+        item.style.setProperty("filter", "");
+      }
+      isDarkMode = false
+    }else {
+      document.querySelector(':root').style.setProperty('--primary-color', '#2f3640');
+      document.querySelector(':root').style.setProperty('--secondary-color', '#353b48');
+      document.querySelector(':root').style.setProperty('--text-color', '#ffffff');
+      document.querySelector(':root').style.setProperty('--theme-color', '#2f3640');
+      imgDarkButton.setAttribute("src", "img/moon.svg")
+      for (let item of imgBtnUtil) {
+        item.style.setProperty("filter", "invert(95%) sepia(5%) saturate(0%) hue-rotate(314deg) brightness(103%) contrast(108%)");
+      }
+      isDarkMode = true
+    }
+
+})
