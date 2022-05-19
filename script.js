@@ -203,7 +203,6 @@ btnToggle.addEventListener("click", () => {
       document.querySelector(':root').style.setProperty('--primary-color', '#FFFFFF');
       document.querySelector(':root').style.setProperty('--secondary-color', '#EFEFEF');
       document.querySelector(':root').style.setProperty('--text-color', '#000000');
-      document.querySelector(':root').style.setProperty('--theme-color', '#FF7979');
       imgDarkButton.setAttribute("src", "img/sun.svg")
       for (let item of imgBtnUtil) {
         item.style.setProperty("filter", "");
@@ -213,7 +212,6 @@ btnToggle.addEventListener("click", () => {
       document.querySelector(':root').style.setProperty('--primary-color', '#2f3640');
       document.querySelector(':root').style.setProperty('--secondary-color', '#353b48');
       document.querySelector(':root').style.setProperty('--text-color', '#ffffff');
-      document.querySelector(':root').style.setProperty('--theme-color', '#2f3640');
       imgDarkButton.setAttribute("src", "img/moon.svg")
       for (let item of imgBtnUtil) {
         item.style.setProperty("filter", "invert(95%) sepia(5%) saturate(0%) hue-rotate(314deg) brightness(103%) contrast(108%)");
@@ -222,3 +220,32 @@ btnToggle.addEventListener("click", () => {
     }
 
 })
+
+// Theme
+
+const btnTheme = document.getElementsByClassName("theme-color")
+
+
+for (let item of btnTheme) {
+  item.addEventListener('click', () => {
+    for (let e of btnTheme) {
+      e.classList.remove("active");
+    }
+    item.classList.add("active");
+    switch(item.dataset.color) {
+      case "red":
+          document.querySelector(':root').style.setProperty('--theme-color', '#FF7979');
+        break;
+      case "green":
+            document.querySelector(':root').style.setProperty('--theme-color', '#4cd137');
+        break;
+      case "blue":
+            document.querySelector(':root').style.setProperty('--theme-color', '#487eb0');
+          break;
+      case "yellow":
+            document.querySelector(':root').style.setProperty('--theme-color', '#fbc531');
+          break;
+      default:
+    }
+  })
+}

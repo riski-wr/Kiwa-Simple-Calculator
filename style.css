@@ -51,7 +51,7 @@ main{
 }
 
 #numpad button.btn-operator{
-  color: red;
+  color: var(--theme-color);
 }
 
 .btn-num:active{
@@ -138,6 +138,36 @@ main{
   color: white;
 }
 
+.theme-box{
+  display: grid;
+  column-gap: 10px;
+  margin-bottom: 25px;
+}
+
+
+.theme-color{
+  grid-row: 1;
+  height: 40px;
+  width: 40px;
+  border-radius: 99px;
+
+}
+.theme-color.active{
+  border: 5px solid var(--primary-color);
+}
+
+.theme-color[data-color="red"]{
+  background-color: #FF7979;
+}
+.theme-color[data-color="green"]{
+  background-color: #4cd137;
+}
+.theme-color[data-color="blue"]{
+ background-color: #487eb0;
+}
+.theme-color[data-color="yellow"]{
+ background-color: #fbc531;
+}
 
 /*  Tablet */
 @media only screen and (max-width: 1200px) {
