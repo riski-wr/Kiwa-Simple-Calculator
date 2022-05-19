@@ -7,10 +7,7 @@
   --secondary-color: #EFEFEF;
   --text-color: #000000;
   --theme-color: #FF7979;
-
-
 }
-
 
 /* safari fix */
 button{
@@ -169,14 +166,21 @@ main{
  background-color: #fbc531;
 }
 
-/*  Tablet */
+/*  Desktop */
 @media only screen and (max-width: 1200px) {
   main{
     width: 80vw;
   }
 }
-/* Mobile */
 
+/*  Tablet */
+@media only screen and (max-width: 768px) {
+  main{
+    width: 90vw;
+  }
+}
+
+/* Mobile */
 @media only screen and (max-width: 600px) {
   main{
     flex-direction: column-reverse;
@@ -191,5 +195,11 @@ main{
 
   .numpad-row{
     margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  main{
+    height: 1000px;;
   }
 }
