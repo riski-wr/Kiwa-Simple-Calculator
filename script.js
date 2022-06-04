@@ -48,7 +48,7 @@ class KiwaSimpleCalculator {
     let result;
     let isFloat = false;
 
-    if (checkFloat(num1) || checkFloat(num2)) {
+    if (this.checkFloat(num1) || this.checkFloat(num2)) {
         num1 *= 10
         num2 *= 10
         isFloat = true
@@ -73,7 +73,10 @@ class KiwaSimpleCalculator {
         result /= 10;
       }
       return result
+  }
 
+  checkFloat(n){
+     return Number(n) === n && n % 1 !== 0
   }
 
 }
@@ -89,8 +92,6 @@ const txtComputation = document.getElementById("computation");
 const resultbox = document.getElementById("resultbox");
 
 let currentResultFontsize = "64px";
-
-let isDarkMode = false;
 
 const calculator = new KiwaSimpleCalculator()
 
@@ -115,7 +116,6 @@ for (let item of btnEqual) {
         setResultFontSizeByLength()
      })
 }
-
 
 for (let item of btnOperator) {
     item.addEventListener('click', () => {
@@ -161,7 +161,6 @@ btnPercent.addEventListener("click", () => {
     setResultFontSizeByLength()
 })
 
-
 function resize_to_fit() {
   let fontSize = window.getComputedStyle(txtResult).fontSize;
   if (parseFloat(fontSize) <= 32 ) {
@@ -187,44 +186,44 @@ function setResultFontSizeByLength(){
     txtResult.style.fontSize = (parseFloat(fontSize)) + 'px';
 }
 
-function checkFloat(n){
-   return Number(n) === n && n % 1 !== 0
-}
-
 // Dark Mode
-
 const btnToggle = document.getElementById("btn-toggle");
 const imgDarkButton = document.getElementById("img-dark-button");
 const imgBtnUtil = document.querySelectorAll(".btn-util img");
+let isDarkMode = false;
 
 btnToggle.addEventListener("click", () => {
+    var primaryColor = "#FFFFFF"
+    var secondaryColor = "#EFEFEF"
+    var textColor = "#000000"
+    var btnToggleImg = "img/sun.svg"
+
     if (isDarkMode) {
-      console.log(imgBtnUtil)
-      document.querySelector(':root').style.setProperty('--primary-color', '#FFFFFF');
-      document.querySelector(':root').style.setProperty('--secondary-color', '#EFEFEF');
-      document.querySelector(':root').style.setProperty('--text-color', '#000000');
-      imgDarkButton.setAttribute("src", "img/sun.svg")
       for (let item of imgBtnUtil) {
         item.style.setProperty("filter", "");
       }
       isDarkMode = false
     }else {
-      document.querySelector(':root').style.setProperty('--primary-color', '#2f3640');
-      document.querySelector(':root').style.setProperty('--secondary-color', '#353b48');
-      document.querySelector(':root').style.setProperty('--text-color', '#ffffff');
-      imgDarkButton.setAttribute("src", "img/moon.svg")
+      primaryColor = "#2f3640"
+      secondaryColor = '#353b48'
+      textColor = "#ffffff"
+      btnToggleImg = "img/moon.svg"
       for (let item of imgBtnUtil) {
         item.style.setProperty("filter", "invert(95%) sepia(5%) saturate(0%) hue-rotate(314deg) brightness(103%) contrast(108%)");
       }
       isDarkMode = true
     }
 
+    document.querySelector(':root').style.setProperty('--primary-color', primaryColor);
+    document.querySelector(':root').style.setProperty('--secondary-color', secondaryColor);
+    document.querySelector(':root').style.setProperty('--text-color', textColor);
+    imgDarkButton.setAttribute("src", btnToggleImg)
+
 })
 
 // Theme
-
 const btnTheme = document.getElementsByClassName("theme-color")
-
+let themeColor
 
 for (let item of btnTheme) {
   item.addEventListener('click', () => {
@@ -234,18 +233,20 @@ for (let item of btnTheme) {
     item.classList.add("active");
     switch(item.dataset.color) {
       case "red":
-          document.querySelector(':root').style.setProperty('--theme-color', '#FF7979');
+          themeColor = "#FF7979"
         break;
       case "green":
-            document.querySelector(':root').style.setProperty('--theme-color', '#4cd137');
+          themeColor = "#4cd137"
         break;
       case "blue":
-            document.querySelector(':root').style.setProperty('--theme-color', '#487eb0');
+          themeColor = '#487eb0'
           break;
       case "yellow":
-            document.querySelector(':root').style.setProperty('--theme-color', '#fbc531');
+          themeColor = '#fbc531'
           break;
       default:
+        themeColor = "#FF7979"
     }
+    document.querySelector(':root').style.setProperty('--theme-color', themeColor);
   })
 }

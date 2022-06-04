@@ -9,11 +9,15 @@
   --theme-color: #FF7979;
 }
 
-/* safari fix */
 button{
   color: var(--text-color);
   padding: 0;
 }
+
+button:active, button:hover{
+   opacity: 0.7;
+}
+
 
 body{
   transition: 1s;
@@ -25,7 +29,6 @@ body{
   justify-content: center;
   font-family: 'Poppins', sans-serif;
 }
-
 
 main{
   width: 50vw;
@@ -71,7 +74,6 @@ main{
   justify-content: space-between;
 }
 
-
 #numbox{
   flex: 1;
   height: 100%;
@@ -91,10 +93,10 @@ main{
   word-break: break-all;
 }
 
+
 #result-container h1{
   font-size: 64px;
   margin: 0;
-
 }
 
 #result-container h2{
@@ -109,24 +111,17 @@ main{
   padding: 10px;
   border-radius: 10px;
   font-family: 'Poppins', sans-serif;
-
-
 }
 
 .flex-center{
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
-.btn-util img {
-  /* filter: invert(95%) sepia(5%) saturate(0%) hue-rotate(314deg) brightness(103%) contrast(108%); */
-}
 .btn img{
   margin-right: 10px;
 }
-
 
 #info{
   text-align: left;
@@ -141,14 +136,13 @@ main{
   margin-bottom: 25px;
 }
 
-
 .theme-color{
   grid-row: 1;
   height: 40px;
   width: 40px;
   border-radius: 99px;
-
 }
+
 .theme-color.active{
   border: 5px solid var(--primary-color);
 }
@@ -156,12 +150,15 @@ main{
 .theme-color[data-color="red"]{
   background-color: #FF7979;
 }
+
 .theme-color[data-color="green"]{
   background-color: #4cd137;
 }
+
 .theme-color[data-color="blue"]{
  background-color: #487eb0;
 }
+
 .theme-color[data-color="yellow"]{
  background-color: #fbc531;
 }
@@ -175,19 +172,23 @@ main{
 
 /*  Tablet */
 @media only screen and (max-width: 768px) {
+
   main{
     width: 90vw;
+
   }
 }
 
 /* Mobile */
 @media only screen and (max-width: 600px) {
+
   main{
     flex-direction: column-reverse;
     width: 90vw;
     height: 90vh;
     padding: 20px;
   }
+
   #numbox{
     margin-left: 0;
     margin-bottom: 20px;
