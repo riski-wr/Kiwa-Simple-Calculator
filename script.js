@@ -8,12 +8,19 @@ class KiwaSimpleCalculator {
 
   updateResult(number){
     if(txtResult.innerText == "0"){
+      if (number == ".") {
+          return false
+      }
       if (number != "0") {
           txtResult.innerText = number
           return
       }
     }
-     txtResult.innerText += number
+    if(number == "." && txtResult.innerText.includes(".")){
+      return false
+    }
+    txtResult.innerText += number
+
   }
 
   reset(){
@@ -79,6 +86,15 @@ class KiwaSimpleCalculator {
      return Number(n) === n && n % 1 !== 0
   }
 
+//   formatWithCommas(n) {
+//     n.split(",").join('');
+//     console.log(n);
+//     var parts = n.toString().split(".");
+//     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//    return parts.join(".");
+// }
+
+
 }
 
 const btnNum = document.getElementsByClassName("btn-num");
@@ -97,8 +113,10 @@ const calculator = new KiwaSimpleCalculator()
 
 for (let item of btnNum) {
     item.addEventListener('click', () => {
-         calculator.updateResult(item.innerText)
-         currentResultFontsize = resize_to_fit()
+          if(calculator.updateResult(item.innerText) == false){
+              return
+          }
+          currentResultFontsize = resize_to_fit()
      })
 }
 
