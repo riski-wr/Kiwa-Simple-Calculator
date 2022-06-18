@@ -20,7 +20,6 @@ class KiwaSimpleCalculator {
       return false
     }
     txtResult.innerText += number
-
   }
 
   reset(){
@@ -214,12 +213,14 @@ btnToggle.addEventListener("click", () => {
     var primaryColor = "#FFFFFF"
     var secondaryColor = "#EFEFEF"
     var textColor = "#000000"
+
     var btnToggleImg = "img/sun.svg"
 
     if (isDarkMode) {
       for (let item of imgBtnUtil) {
         item.style.setProperty("filter", "");
       }
+      document.querySelector(':root').style.setProperty('--bg-color', themeColor );
       isDarkMode = false
     }else {
       primaryColor = "#2f3640"
@@ -229,12 +230,14 @@ btnToggle.addEventListener("click", () => {
       for (let item of imgBtnUtil) {
         item.style.setProperty("filter", "invert(95%) sepia(5%) saturate(0%) hue-rotate(314deg) brightness(103%) contrast(108%)");
       }
+      document.querySelector(':root').style.setProperty('--bg-color', "#353b48" );
       isDarkMode = true
     }
 
     document.querySelector(':root').style.setProperty('--primary-color', primaryColor);
     document.querySelector(':root').style.setProperty('--secondary-color', secondaryColor);
     document.querySelector(':root').style.setProperty('--text-color', textColor);
+
     imgDarkButton.setAttribute("src", btnToggleImg)
 
 })
@@ -264,6 +267,12 @@ for (let item of btnTheme) {
           break;
       default:
         themeColor = "#FF7979"
+    }
+    console.log(isDarkMode);
+    if(isDarkMode){
+      document.querySelector(':root').style.setProperty('--bg-color', "#353b48");
+    }else{
+      document.querySelector(':root').style.setProperty('--bg-color', themeColor);
     }
     document.querySelector(':root').style.setProperty('--theme-color', themeColor);
   })
